@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState('');
@@ -10,6 +10,7 @@ export default function App() {
     setCourseGoals([...courseGoals, enteredGoal]);
     console.log(enteredGoal)
   }
+
 
   return (
     <View style={styles.screen}>
@@ -24,11 +25,14 @@ export default function App() {
       </View>
       
       <View style={styles.list}>
-        {courseGoals.map((goal) => 
-          <View style={styles.list_item} key={goal}>
-            <Text>{goal}</Text>
-          </View>
-        )}
+        <FlatList 
+          data = {courseGoals}
+          renderItem = { itemData => 
+            <View style={styles.listitem}>
+              <Text>{itemData.item}</Text>
+            </View> 
+          }
+        />
       </View>
     </View>
   );
@@ -53,7 +57,7 @@ const styles = StyleSheet.create({
   list: {
     marginTop: 20,
   },
-  list_item: {
+  listitem: {
     height: 30,
     backgroundColor: 'skyblue',
     marginVertical: 2,
