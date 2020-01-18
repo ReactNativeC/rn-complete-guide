@@ -30,10 +30,9 @@ export default function App() {
         <FlatList 
           data = {courseGoals}
           renderItem = { itemData => 
-            <GoalItem 
-              id = {itemData.item.id}
+            <GoalItem               
               title = {itemData.item.value}
-              onDelete={deleteGoal}
+              onDelete={deleteGoal.bind(this, itemData.item.id)}
             />
           }                                     
           keyExtractor = {(item, index) => item.id}
