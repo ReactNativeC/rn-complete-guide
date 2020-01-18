@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
-import {View, Button, TextInput, StyleSheet, ShadowPropTypesIOS} from 'react-native';
+import {View, Modal, Button, TextInput, StyleSheet} from 'react-native';
 
-const GoalInput = (props) => {
-  const [enteredGoal, setEnteredGoal] = useState('');
-  
+const GoalInput = (props) => {  
+  const [enteredGoal, setEnteredGoal] = useState('');  
   const onEnteredGoalTextChanged = (enteredText) => setEnteredGoal(enteredText);
 
-  const clearGoals = () => {
-    setEnteredGoal(''); 
-    props.ClearGoalList();
-  }
-  
   return (
-    <View style={styles.inputContainer}>
-        <TextInput style={styles.textbox} 
-          placeHolder = "Enter a Goal" 
-          onChangeText = {onEnteredGoalTextChanged}
-          value = {enteredGoal} 
-        />
-
-        <Button title="Add" onPress={props.AddGoal.bind(this, enteredGoal)} />
-        <Button title="Clear All" onPress={clearGoals} />
-      </View>
+    <Modal 
+      visible={props.visible} 
+      animationType='slide'
+      >      
+      <View style={styles.inputContainer}>
+          <TextInput style={styles.textbox} 
+            placeHolder = "Enter a Goal" 
+            onChangeText = {onEnteredGoalTextChanged}
+            value = {enteredGoal}             
+          />
+          
+          <Button title="Add" onPress={props.addGoal.bind(this, enteredGoal)} />          
+        </View>
+      </Modal>
   );
 };
 
 const styles = StyleSheet.create({
   inputContainer: {
-    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   textbox: {
     borderWidth: 1,
