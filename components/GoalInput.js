@@ -5,7 +5,7 @@ const GoalInput = (props) => {
   const [enteredGoal, setEnteredGoal] = useState('');  
   const onEnteredGoalTextChanged = (enteredText) => setEnteredGoal(enteredText);
   const onAddPressed = () => {
-    props.addGoal(enteredGoal);
+    props.onGoal(enteredGoal);
     setEnteredGoal('');
   }
   return (
@@ -19,8 +19,10 @@ const GoalInput = (props) => {
             onChangeText = {onEnteredGoalTextChanged}
             value = {enteredGoal}             
           />
-          
-          <Button title="Add" onPress={onAddPressed} />          
+          <View style={styles.buttonsContainer}>
+            <Button title="Add" onPress={onAddPressed} />     
+            <Button title="Cancel" color="red" onPress={props.onCancel} />
+          </View>
         </View>
       </Modal>
   );
@@ -38,6 +40,11 @@ const styles = StyleSheet.create({
     padding: 5,
     width: '70%'
   },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 export default GoalInput;

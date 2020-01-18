@@ -7,7 +7,7 @@ export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
   const [isAddMode, setIsAddMode] = useState(false);
 
-  const addEnteredGoal = (enteredGoal) =>  {
+  const AddHandler = (enteredGoal) =>  {
     setCourseGoals([...courseGoals, {id: Math.random().toString(), value: enteredGoal}]);     
     setIsAddMode(false);
   }
@@ -20,13 +20,18 @@ export default function App() {
     setCourseGoals([]);
   };
 
+  const cancelHandler = () => {
+    setIsAddMode(false);
+  };
+
   return (
     <SafeAreaView style={styles.screen}>
       <Button title = 'Add New Goal' onPress = {() => setIsAddMode(true)} />
       <Button title="Clear All" onPress={clearGoalList} />
 
       <GoalInput 
-        addGoal = {addEnteredGoal}
+        onGoal = {AddHandler}
+        onCancel = {cancelHandler}
         clearGoalList = {clearGoalList}
         visible = {isAddMode}        
       />
