@@ -7,10 +7,9 @@ export default function App() {
 
   const onEnteredGoalTextChanged = (enteredText) => setEnteredGoal(enteredText);
   const addEnteredGoal = () =>  {
-    setCourseGoals([...courseGoals, enteredGoal]);
-    console.log(enteredGoal)
+    setCourseGoals([...courseGoals, {key: Math.random().toString(), value: enteredGoal}]);    
+    console.log(enteredGoal);
   }
-
 
   return (
     <View style={styles.screen}>
@@ -29,9 +28,10 @@ export default function App() {
           data = {courseGoals}
           renderItem = { itemData => 
             <View style={styles.listitem}>
-              <Text>{itemData.item}</Text>
+          <Text>{itemData.item.value} </Text>
             </View> 
           }
+          keyExtractor = {itemData => itemData.key}
         />
       </View>
     </View>
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     marginVertical: 2,
     justifyContent: 'center',
     width: '80%',
+    padding: 5,
   
   }
 
