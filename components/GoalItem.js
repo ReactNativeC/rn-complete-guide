@@ -4,7 +4,7 @@ import { View, Text, StyleSheet} from 'react-native';
 const GoalItem = (props) => {
   return (
     <View style={styles.listitem}>
-      <Text>{props.title}</Text>
+      <Text>{props.children}</Text>
     </View>             
   );
 }
