@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'skyblue',
     marginVertical: 2,
     justifyContent: 'center',
-    width: '75%',
+    width: '100%',
     padding: 5,
   
   }

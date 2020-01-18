@@ -26,9 +26,14 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <Button title = 'Add New Goal' onPress = {() => setIsAddMode(true)} />
-      <Button title="Clear All" onPress={clearGoalList} />
-
+      <View style={styles.buttonContainer}>
+        <View style={styles.button}>
+          <Button title = 'Add New Goal' onPress = {() => setIsAddMode(true)} />
+        </View>
+        <View style={styles.button}>
+          <Button title="Clear All" onPress={clearGoalList} color="red"/>
+        </View>        
+      </View>      
       <GoalInput 
         onGoal = {AddHandler}
         onCancel = {cancelHandler}
@@ -48,6 +53,7 @@ export default function App() {
           keyExtractor = {(item, index) => item.id}
         />
       </View>
+      
     </SafeAreaView>
   );
 }
@@ -62,4 +68,12 @@ const styles = StyleSheet.create({
   list: {
     marginTop: 20,
   },
+  buttonContainer: {    
+    flexDirection: 'row', 
+    justifyContent: 'center'
+  },
+  button: {
+    marginHorizontal: 10,
+    width: '40%'
+  }
 })
