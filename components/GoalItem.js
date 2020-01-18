@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight} from 'rea
 
 const GoalItem = (props) => {
   return (
-    <TouchableOpacity onPress={props.onDelete} >
+    <TouchableOpacity onPress={props.onDelete.bind(this, props.id)} >
       <View style={styles.listitem}>
         <Text>{props.title}</Text>
       </View>           
