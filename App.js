@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <Button title = 'Add Goal' onPress = {() => setIsAddMode(true)} />
+      <Button title = 'Add New Goal' onPress = {() => setIsAddMode(true)} />
       <Button title="Clear All" onPress={clearGoalList} />
 
       <GoalInput 

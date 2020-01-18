@@ -4,7 +4,10 @@ import {View, Modal, Button, TextInput, StyleSheet} from 'react-native';
 const GoalInput = (props) => {  
   const [enteredGoal, setEnteredGoal] = useState('');  
   const onEnteredGoalTextChanged = (enteredText) => setEnteredGoal(enteredText);
-
+  const onAddPressed = () => {
+    props.addGoal(enteredGoal);
+    setEnteredGoal('');
+  }
   return (
     <Modal 
       visible={props.visible} 
@@ -17,7 +20,7 @@ const GoalInput = (props) => {
             value = {enteredGoal}             
           />
           
-          <Button title="Add" onPress={props.addGoal.bind(this, enteredGoal)} />          
+          <Button title="Add" onPress={onAddPressed} />          
         </View>
       </Modal>
   );
