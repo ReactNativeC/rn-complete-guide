@@ -8,9 +8,13 @@ export default function App() {
 
 
   const addEnteredGoal = (enteredGoal) =>  {
-    setCourseGoals([...courseGoals, {id: Math.random().toString(), value: enteredGoal}]);    
-    console.log(enteredGoal);    
+    setCourseGoals([...courseGoals, {id: Math.random().toString(), value: enteredGoal}]); 
   }
+
+  const deleteGoal = (goalId) => {
+    setCourseGoals(courseGoals.filter((goal) => goal.id !== goalId));
+  }
+
   const clearGoalList = () => {
     setCourseGoals([]);
   };
@@ -22,11 +26,16 @@ export default function App() {
         AddGoal = {addEnteredGoal}
         ClearGoalList = {clearGoalList}
       />
-     
       <View style={styles.list}>
         <FlatList 
           data = {courseGoals}
-          renderItem = {itemData => <GoalItem>{itemData.item.value}</GoalItem>}                           
+          renderItem = { itemData => 
+            <GoalItem 
+              id = {itemData.item.id}
+              title = {itemData.item.value}
+              onDelete={deleteGoal}
+            />
+          }                                     
           keyExtractor = {(item, index) => item.id}
         />
       </View>

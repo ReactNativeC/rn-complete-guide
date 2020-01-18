@@ -2,13 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight} from 'react-native';
 
 const GoalItem = (props) => {
-  const LongPressed = () => { alert('you long pressed')}
-  const Pressed = () => { alert("pressed") }
-  
   return (
-    <TouchableOpacity onLongPress={LongPressed} onPress={Pressed}>
+    <TouchableOpacity onPress={props.onDelete.bind(this, props.id)} >
       <View style={styles.listitem}>
-        <Text>{props.children}</Text>
+        <Text>{props.title}</Text>
       </View>           
     </TouchableOpacity>  
   );
